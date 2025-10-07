@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO KRIUK - Camilan Sehat, Bumi Selamat</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lobster&family=Caveat&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdfaf6;
+            color: #4f4f4f;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .leaf-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2328a745" opacity="0.5"><path d="M12 2a10 10 0 0 0-7.5 16.5A10 10 0 0 0 12 22a10 10 0 0 0 7.5-3.5A10 10 0 0 0 12 2zm0 18a8 8 0 0 1-5.6-13.6L12 12V4a8 8 0 0 1 5.6 13.6z"/></svg>');
+            background-size: contain;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Navbar style */
+        .navbar {
+            background-color: #28a745;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 1rem;
+        }
+        .navbar-brand img { height: 50px; }
+        .navbar-brand-text {
+            font-family: 'Lobster', cursive;
+            font-size: 1.8rem;
+            color: #ffffff !important;
+        }
+        .nav-link { font-weight: 600; color: #ffffff !important; transition: color 0.3s; }
+        .nav-link:hover { color: #ffeb3b !important; }
+
+        .hero {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1589301763784-386034821a77?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            color: white;
+        }
+        .hero h1 { font-family: 'Lobster', cursive; font-size: 4rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+
+        .section { padding: 80px 0; }
+        .section-title { font-family: 'Lobster', cursive; color: #28a745; font-size: 2.8rem; }
+        
+        .btn-brand {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 12px 30px;
+            transition: all 0.3s ease;
+        }
+        .btn-brand:hover { background-color: #e67e00; transform: scale(1.05); }
+
+        .ai-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+        }
+        .ai-result {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: #28a745;
+            background-color: #f8f9fa;
+            border-left: 5px solid #ff8c00;
+            padding: 20px;
+            border-radius: 5px;
+            min-height: 100px;
+            white-space: pre-wrap;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #28a745;
+        }
+        
+        /* Video Section */
+        .video-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Kriuk-Bot Character */
+        .kriuk-bot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .kriuk-bot-container:hover { transform: scale(1.1); }
+        .kriuk-bot-body { animation: floatAnimation 3s ease-in-out infinite; }
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="leaf-container"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://i.ibb.co/p33jC1D/IMG-20250917-WA0008.jpg" alt="ECO KRIUK Logo" class="me-2">
+                <span class="navbar-brand-text">Eco Kriuk</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="home.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="produk.html">Produk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tentang-kami.html">Tentang Kami</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="hero d-flex align-items-center justify-content-center text-center">
+        <div data-aos="fade-up">
+            <h1>Kriuknya Sehat, Dunianya Selamat</h1>
+            <p class="lead fs-4">Camilan renyah dari 100% bahan alami dengan kemasan ramah lingkungan.</p>
+            <a href="produk.html" class="btn btn-brand mt-3">Jelajahi Rasa <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="feature-icon mb-3"><i class="fas fa-leaf"></i></div>
+                    <h4>100% Alami</h4>
+                    <p>Dibuat dari sukun dan singkong pilihan tanpa bahan pengawet.</p>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mb-3"><i class="fas fa-users"></i></div>
+                    <h4>Dukung Petani Lokal</h4>
+                    <p>Bahan baku kami berasal dari petani-petani lokal Indonesia.</p>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mb-3"><i class="fas fa-recycle"></i></div>
+                    <h4>Kemasan Hijau</h4>
+                    <p>Kemasan kami biodegradable, mudah terurai dan ramah lingkungan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video Promo Section -->
+    <section class="section pt-0">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                 <h2 class="section-title">Kriuknya Bikin Nagih!</h2>
+                 <p>Lihat betapa serunya menikmati Eco Kriuk.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="video-container">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="1759414700896.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Hiburan Section -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Hiburan Renyah dari AI!</h2>
+                <p>Bosan? Coba fitur-fitur seru kami yang ditenagai AI. Hasilnya selalu acak dan unik!</p>
+            </div>
+            <div class="row g-5">
+                <!-- Mood Recommender -->
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="ai-card h-100">
+                        <h4 class="text-center mb-3">Cari Kriuk Sesuai Mood</h4>
+                        <select id="mood-select" class="form-select form-select-lg">
+                            <option selected>Pilih Mood Kamu...</option>
+                            <option value="Butuh Semangat">🔥 Butuh Semangat</option>
+                            <option value="Lagi Santai">😌 Lagi Santai</option>
+                            <option value="Fokus Kerja">💻 Fokus Kerja</option>
+                            <option value="Nonton Film">🎬 Nonton Film</option>
+                        </select>
+                        <button id="getRecommendationBtn" class="btn btn-brand mt-3 w-100">Cari Rekomendasi!</button>
+                        <div id="recommendationResult" class="ai-result mt-4 text-center">
+                            <span class="text-muted">Rekomendasi camilan spesial akan muncul di sini...</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pantun Generator -->
+                <div class="col-lg-6" data-aos="fade-left">
+                     <div class="ai-card h-100">
+                        <h4 class="text-center mb-3">Minta Pantun Kriuk!</h4>
+                        <p class="text-center text-muted">Klik tombol di bawah dan dapatkan pantun segar seputar camilan!</p>
+                        <button id="getPantunBtn" class="btn btn-brand w-100">Buatkan Aku Pantun! <i class="fas fa-magic ms-2"></i></button>
+                        <div id="pantunResult" class="ai-result mt-4 text-center">
+                             <span class="text-muted">Pantun renyah seputar camilan akan muncul di sini...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Kriuk-Bot -->
+    <a href="https://smojo.ai/" target="_blank" class="kriuk-bot-container">
+        <svg class="kriuk-bot-body" width="120" height="140" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+            <defs><filter id="bot-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="4" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.2"/></filter></defs>
+            <g filter="url(#bot-shadow)">
+                <path d="M60 130 C 20 120, 10 50, 60 15 C 110 50, 100 120, 60 130 Z" fill="#28a745"/>
+                <path d="M50 15 C 40 5, 80 5, 70 15" stroke="#5cb85c" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <circle cx="45" cy="70" r="10" fill="white"/><circle cx="75" cy="70" r="10" fill="white"/>
+                <circle cx="48" cy="73" r="5" fill="#333"/><circle cx="72" cy="73" r="5" fill="#333"/>
+                <path d="M45 95 Q60 110 75 95" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+        </svg>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto bg-dark text-white pt-4 pb-2">
+        <div class="container text-center"><p>&copy; 2025 ECO KRIUK. Camilan Sehat, Bumi Selamat.</p></div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Animated background script
+        const leafContainer = document.querySelector('.leaf-container');
+        for (let i = 0; i < 15; i++) {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            leaf.style.left = `${Math.random() * 100}vw`;
+            leaf.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            leaf.style.animationDelay = `${Math.random() * 5}s`;
+            leafContainer.appendChild(leaf);
+        }
+
+        // Gemini API Interaction
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+        const getRecommendationBtn = document.getElementById('getRecommendationBtn');
+        const recommendationResult = document.getElementById('recommendationResult');
+        const getPantunBtn = document.getElementById('getPantunBtn');
+        const pantunResult = document.getElementById('pantunResult');
+
+        const loadingHTML = `<div class="d-flex justify-content-center align-items-center h-100"><div class="spinner-border text-success" role="status"></div><span class="ms-3">AI sedang meracik...</span></div>`;
+
+        getRecommendationBtn.addEventListener('click', async () => {
+            const mood = document.getElementById('mood-select').value;
+            if (mood.includes('Pilih')) {
+                recommendationResult.innerHTML = '<span class="text-danger">Pilih dulu mood kamu ya!</span>';
+                return;
+            }
+            recommendationResult.innerHTML = loadingHTML;
+            const randomAdjectives = ["kreatif", "unik", "tak terduga", "klasik", "menyegarkan", "berbeda", "out-of-the-box"];
+            const randomAdjective = randomAdjectives[Math.floor(Math.random() * randomAdjectives.length)];
+            const prompt = `Saya sedang merasa "${mood}". Berikan saya rekomendasi produk keripik "Eco Kriuk" (varian rasa: Balado, Rendang, Sambal Matah, Bumbu Rujak, Lada Hitam, Sambal Ijo) yang paling cocok. Beri jawaban yang ${randomAdjective} dalam 1 kalimat dan sertakan emoji yang relevan. Pastikan jawabannya berbeda setiap kali diminta.`;
+            const resultText = await callGemini(prompt, "Saatnya mencoba Keripik Sukun Balado! 🌶️ Pedas manisnya dijamin bikin semangatmu membara lagi!");
+            recommendationResult.innerHTML = resultText;
+        });
+
+        getPantunBtn.addEventListener('click', async () => {
+            pantunResult.innerHTML = loadingHTML;
+            const pantunStyles = ["lucu dan ceria", "romantis dan puitis", "penuh semangat", "jenaka", "modern dan gaul", "tradisional melayu"];
+            const randomStyle = pantunStyles[Math.floor(Math.random() * pantunStyles.length)];
+            const prompt = `Buatkan sebuah pantun 4 baris (sampiran dan isi) dengan gaya ${randomStyle} tentang makan camilan sehat "Eco Kriuk". Pastikan pantunnya selalu berbeda dan acak.`;
+            const resultText = await callGemini(prompt, "Ada singkong di tepi rawa,\nJadi keripik rasa rendang.\nHai kawan jangan kecewa,\nEco Kriuk bikin hati senang! 😄");
+            pantunResult.innerHTML = resultText;
+        });
+
+        async function callGemini(prompt, fallbackText) {
+             if (!apiKey) {
+                console.warn("API Key is empty. Returning fallback text.");
+                return fallbackText;
+             }
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                if (!response.ok) throw new Error(`API error! status: ${response.status}`);
+                const result = await response.json();
+                return result.candidates?.[0]?.content?.parts?.[0]?.text || fallbackText;
+            } catch (error) {
+                console.error("Error fetching Gemini API:", error);
+                return "Maaf, AI kami sedang istirahat. Coba lagi nanti ya!";
+            }
+        }
+    </script>
+</body>
+</html>
