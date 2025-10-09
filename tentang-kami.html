@@ -60,11 +60,6 @@
         .game-nav button { font-weight: 700; }
         #gameScore { font-size: 1.5rem; font-weight: bold; }
 
-        /* Kriuk-Bot Character */
-        .kriuk-bot-container { position: fixed; bottom: 20px; right: 20px; z-index: 1000; cursor: pointer; transition: transform 0.3s ease; }
-        .kriuk-bot-container:hover { transform: scale(1.1); }
-        .kriuk-bot-body { animation: floatAnimation 3s ease-in-out infinite; }
-        @keyframes floatAnimation { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
@@ -143,20 +138,6 @@
             </div>
         </div>
     </section>
-    
-    <!-- Kriuk-Bot -->
-    <a href="https://smojo.ai/" target="_blank" class="kriuk-bot-container">
-        <svg class="kriuk-bot-body" width="120" height="140" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-             <defs><filter id="bot-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="4" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.2"/></filter></defs>
-            <g filter="url(#bot-shadow)">
-                <path d="M60 130 C 20 120, 10 50, 60 15 C 110 50, 100 120, 60 130 Z" fill="#28a745"/>
-                <path d="M50 15 C 40 5, 80 5, 70 15" stroke="#5cb85c" stroke-width="8" fill="none" stroke-linecap="round"/>
-                <circle cx="45" cy="70" r="10" fill="white"/><circle cx="75" cy="70" r="10" fill="white"/>
-                <circle cx="48" cy="73" r="5" fill="#333"/><circle cx="72" cy="73" r="5" fill="#333"/>
-                <path d="M45 95 Q60 110 75 95" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
-            </g>
-        </svg>
-    </a>
 
     <!-- Footer -->
     <footer class="footer mt-auto bg-dark text-white pt-4 pb-2">
@@ -287,5 +268,6 @@
 </body>
 
 </html>
+
 
 
