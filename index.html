@@ -1,328 +1,485 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECO KRIUK - Camilan Sehat, Bumi Selamat</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lobster&family=Caveat&display=swap" rel="stylesheet">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Eco Kriuk - Camilan Sehat, Bumi Selamat</title>
+    <link rel="icon" href="https://i.ibb.co/L8y3J78/Eco-Kriuk-Logo.png" type="image/png"> <!-- Logo ditambahkan sebagai Favicon -->
+    
+    <!-- Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library --><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        // Konfigurasi Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3A6B35', // Hijau tua (tradisional)
+                        'accent': '#D95525', // Oranye terakota (tradisional)
+                        'light-bg': '#fdfaf6', // Latar belakang krem
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                        'serif': ['Noto Serif', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
+        /* CSS Kustom untuk efek dinamis dan nuansa tradisional */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', 'sans-serif';
             background-color: #fdfaf6;
-            color: #4f4f4f;
-            overflow-x: hidden;
+            color: #333;
+            overflow-x: hidden; /* Mencegah horizontal scroll */
         }
 
-        /* Animated Background */
-        .leaf-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+        /* Latar belakang animasi bunga melati (menggantikan daun) */
+        .flower-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
         }
-        .leaf {
+        .flower {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2328a745" opacity="0.5"><path d="M12 2a10 10 0 0 0-7.5 16.5A10 10 0 0 0 12 22a10 10 0 0 0 7.5-3.5A10 10 0 0 0 12 2zm0 18a8 8 0 0 1-5.6-13.6L12 12V4a8 8 0 0 1 5.6 13.6z"/></svg>');
+            width: 15px;
+            height: 15px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%233A6B35" opacity="0.3"><path d="M10 3.6c-1.5 0-2.7 1.2-2.7 2.7 0 .4.1.8.3 1.1L6 9.8c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0l1.6-1.6c.3.2.7.3 1.1.3 1.5 0 2.7-1.2 2.7-2.7S11.5 3.6 10 3.6zM4.7 9.1c0 1.5-1.2 2.7-2.7 2.7S-0.7 10.6-0.7 9.1c0-.4.1-.8.3-1.1L-2 5.6c-.4-.4-.4-1 0-1.4.4-.4 1-.4 1.4 0l2.4 2.4c.3-.2.7-.3 1.1-.3zM15.3 9.1c0 1.5 1.2 2.7 2.7 2.7 1.5 0 2.7-1.2 2.7-2.7 0-.4-.1-.8-.3-1.1l2.4-2.4c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0l-2.4 2.4c-.3-.2-.7-.3-1.1-.3zM10 14.4c1.5 0 2.7 1.2 2.7 2.7 0 .4-.1.8-.3 1.1l1.6 1.6c.4.4.4 1 0 1.4-.4.4-1 .4-1.4 0l-1.6-1.6c-.3.2-.7.3-1.1.3-1.5 0-2.7-1.2-2.7-2.7s1.2-2.7 2.7-2.7z"/></svg>');
             background-size: contain;
             animation: fall linear infinite;
         }
         @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); }
-            100% { transform: translateY(110vh) rotate(360deg); }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Navbar style */
-        .navbar {
-            background-color: #28a745;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 1rem;
+        /* Efek Navbar saat scroll */
+        nav {
+            transition: all 0.3s ease-in-out;
         }
-        .navbar-brand img { height: 50px; }
-        .navbar-brand-text {
-            font-family: 'Lobster', cursive;
-            font-size: 1.8rem;
-            color: #ffffff !important;
-        }
-        .nav-link { font-weight: 600; color: #ffffff !important; transition: color 0.3s; }
-        .nav-link:hover { color: #ffeb3b !important; }
-
-        .hero {
-            background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1589301763784-386034821a77?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            color: white;
-        }
-        .hero h1 { font-family: 'Lobster', cursive; font-size: 4rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-
-        .section { padding: 80px 0; }
-        .section-title { font-family: 'Lobster', cursive; color: #28a745; font-size: 2.8rem; }
-        
-        .btn-brand {
-            background-color: #ff8c00;
-            color: white;
-            border: none;
-            font-weight: 700;
-            border-radius: 50px;
-            padding: 12px 30px;
-            transition: all 0.3s ease;
-        }
-        .btn-brand:hover { background-color: #e67e00; transform: scale(1.05); }
-
-        .ai-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            padding: 30px;
-        }
-        .ai-result {
-            font-family: 'Caveat', cursive;
-            font-size: 1.8rem;
-            color: #28a745;
-            background-color: #f8f9fa;
-            border-left: 5px solid #ff8c00;
-            padding: 20px;
-            border-radius: 5px;
-            min-height: 100px;
-            white-space: pre-wrap;
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            color: #28a745;
-        }
-        
-        /* Video Section */
-        .video-container {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        
-        /* Kriuk-Bot Character */
-        .kriuk-bot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .kriuk-bot-container:hover { transform: scale(1.1); }
-        .kriuk-bot-body { animation: floatAnimation 3s ease-in-out infinite; }
-        @keyframes floatAnimation {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        nav.scrolled {
+            background-color: #3A6B35;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* CSS untuk Pop-up */
+        .popup-content {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            transform: scale(0.7);
+            opacity: 0;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .popup-closing {
+            animation: popOut 0.3s ease-out forwards;
+        }
+        @keyframes popOut {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.7); opacity: 0; }
+        }
     </style>
 </head>
-<body>
-    <div class="leaf-container"></div>
-    
+<body class="bg-light-bg">
+    <div class="flower-container"></div>
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="ECO.png" alt="ECO KRIUK Logo" class="me-2">
-                <span class="navbar-brand-text">Eco Kriuk</span>
+    <nav class="fixed top-0 left-0 right-0 z-50 pt-6 pb-6 text-white">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif text-3xl font-bold flex items-center">
+                <img src="https://i.ibb.co/L8y3J78/Eco-Kriuk-Logo.png" alt="Eco Kriuk Logo" class="h-10 mr-2"> <!-- Logo di Navbar -->
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="produk.html">Produk</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tentang-kami.html">Tentang Kami</a></li>
-                </ul>
+            <button class="md:hidden" id="menu-toggle">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <div class="hidden md:flex space-x-8" id="menu-desktop">
+                <a href="index.html" class="font-sans font-medium border-b-2 border-accent pb-1">Beranda</a>
+                <a href="produk.html" class="font-sans font-medium hover:text-gray-200 transition-colors">Produk</a>
+                <a href="tentang-kami.html" class="font-sans font-medium hover:text-gray-200 transition-colors">Tentang Kami</a>
             </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="md:hidden hidden bg-primary/90 backdrop-blur-sm mt-4" id="menu-mobile">
+            <a href="index.html" class="block text-center p-4 border-b border-white/20">Beranda</a>
+            <a href="produk.html" class="block text-center p-4 border-b border-white/20">Produk</a>
+            <a href="tentang-kami.html" class="block text-center p-4">Tentang Kami</a>
         </div>
     </nav>
     
     <!-- Hero Section -->
-    <header class="hero d-flex align-items-center justify-content-center text-center">
-        <div data-aos="fade-up">
-            <h1>Kriuknya Sehat, Dunianya Selamat</h1>
-            <p class="lead fs-4">Camilan renyah dari 100% bahan alami dengan kemasan ramah lingkungan.</p>
-            <a href="produk.html" class="btn btn-brand mt-3">Jelajahi Rasa <i class="fas fa-arrow-right ms-2"></i></a>
+    <header class="h-screen min-h-[600px] relative flex items-center justify-center text-center text-white px-4" style="background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1589301763784-386034821a77?q=80&w=2070&auto.format&fit=crop'); background-size: cover; background-position: center;">
+        <div data-aos="fade-up" data-aos-delay="200">
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl font-bold mb-4">Kriuknya Sehat, Dunianya Selamat</h1>
+            <p class="font-sans text-lg sm:text-xl md:text-2xl font-light max-w-2xl mx-auto mb-8">Camilan renyah dari 100% bahan alami dengan kemasan ramah lingkungan.</p>
+            <a href="produk.html" class="bg-accent hover:bg-opacity-90 text-white font-sans font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105">
+                Jelajahi Rasa <i class="fas fa-arrow-right ml-2"></i>
+            </a>
         </div>
+        <!-- Scroll Down Arrow -->
+        <a href="#fitur" class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl"></i>
+        </a>
     </header>
 
-    <!-- Features Section -->
-    <section class="section">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-4" data-aos="fade-up">
-                    <div class="feature-icon mb-3"><i class="fas fa-leaf"></i></div>
-                    <h4>100% Alami</h4>
-                    <p>Dibuat dari sukun dan singkong pilihan tanpa bahan pengawet.</p>
+    <!-- Fitur Section -->
+    <section id="fitur" class="py-20 md:py-28">
+        <div class="container mx-auto px-4 text-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div data-aos="fade-up">
+                    <div class="text-5xl text-primary mb-4"><i class="fas fa-leaf"></i></div>
+                    <h4 class="font-serif text-xl sm:text-2xl font-bold mb-2">100% Alami</h4>
+                    <p class="font-sans text-gray-600">Dibuat dari sukun dan singkong pilihan tanpa bahan pengawet.</p>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon mb-3"><i class="fas fa-users"></i></div>
-                    <h4>Dukung Petani Lokal</h4>
-                    <p>Bahan baku kami berasal dari petani-petani lokal Indonesia.</p>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl text-primary mb-4"><i class="fas fa-users"></i></div>
+                    <h4 class="font-serif text-xl sm:text-2xl font-bold mb-2">Dukung Petani Lokal</h4>
+                    <p class="font-sans text-gray-600">Bahan baku kami berasal dari petani-petani lokal Indonesia.</p>
                 </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon mb-3"><i class="fas fa-recycle"></i></div>
-                    <h4>Kemasan Hijau</h4>
-                    <p>Kemasan kami biodegradable, mudah terurai dan ramah lingkungan.</p>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl text-primary mb-4"><i class="fas fa-recycle"></i></div>
+                    <h4 class="font-serif text-xl sm:text-2xl font-bold mb-2">Kemasan Hijau</h4>
+                    <p class="font-sans text-gray-600">Kemasan kami biodegradable, mudah terurai dan ramah lingkungan.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Video Promo Section -->
-    <section class="section pt-0">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                 <h2 class="section-title">Kriuknya Bikin Nagih!</h2>
-                 <p>Lihat betapa serunya menikmati Eco Kriuk.</p>
+    <!-- Produk Unggulan Section -->
+    <section class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4">Produk Unggulan Kami</h2>
+                <p class="font-sans text-lg text-gray-600">Cicipi rasa terbaik yang paling disukai.</p>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="video-container">
-                        <video width="100%" autoplay loop muted playsinline>
-                            <source src="VideoEcoKriuk.mp4" type="video/mp4">
-                            Browser Anda tidak mendukung tag video.
-                        </video>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Unggulan 1: Rendang -->
+                <div class="bg-light-bg rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative p-4">
+                        <img src="https://i.ibb.co/6m4z07k/image.jpg" class="w-full h-64 object-contain" alt="Keripik Singkong Rasa Rendang">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h5 class="font-serif text-xl sm:text-2xl font-bold text-primary mb-2">Keripik Singkong Rendang</h5>
+                        <p class="font-sans text-gray-600 mb-4 flex-grow">Kemewahan rasa rendang asli dalam setiap gigitan.</p>
+                        <a href="produk.html" class="mt-auto text-center bg-accent/10 text-accent border border-accent hover:bg-accent hover:text-white font-sans font-bold py-2 px-6 rounded-full transition-all duration-300">
+                            Lihat Detail
+                        </a>
                     </div>
                 </div>
+
+                <!-- Unggulan 2: Balado -->
+                <div class="bg-light-bg rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative p-4">
+                        <img src="https://i.ibb.co/6m4z07k/image.jpg" class="w-full h-64 object-contain" alt="Keripik Sukun Balado">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h5 class="font-serif text-xl sm:text-2xl font-bold text-primary mb-2">Keripik Sukun Balado</h5>
+                        <p class="font-sans text-gray-600 mb-4 flex-grow">Perpaduan pas pedas manis bumbu balado otentik.</p>
+                        <a href="produk.html" class="mt-auto text-center bg-accent/10 text-accent border border-accent hover:bg-accent hover:text-white font-sans font-bold py-2 px-6 rounded-full transition-all duration-300">
+                            Lihat Detail
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Unggulan 3: Sambal Matah -->
+                <div class="bg-light-bg rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative p-4">
+                        <img src="https://i.ibb.co/6m4z07k/image.jpg" class="w-full h-64 object-contain" alt="Keripik Sukun Sambal Matah">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow text-center">
+                        <h5 class="font-serif text-xl sm:text-2xl font-bold text-primary mb-2">Keripik Sukun Sambal Matah</h5>
+                        <p class="font-sans text-gray-600 mb-4 flex-grow">Sensasi pedas segar khas Bali yang menggugah selera.</p>
+                        <a href="produk.html" class="mt-auto text-center bg-accent/10 text-accent border border-accent hover:bg-accent hover:text-white font-sans font-bold py-2 px-6 rounded-full transition-all duration-300">
+                            Lihat Detail
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="produk.html" class="bg-primary hover:bg-opacity-90 text-white font-sans font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105">
+                    Lihat Semua Produk <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- AI Hiburan Section -->
-    <section class="section bg-light">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title">Hiburan Renyah dari AI!</h2>
-                <p>Bosan? Coba fitur-fitur seru kami yang ditenagai AI. Hasilnya selalu acak dan unik!</p>
+    <!-- ===== Bagian Video Iklan ===== -->
+    <section class="py-20 md:py-28 bg-primary/5">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4">Video Iklan Kami</h2>
+                <p class="font-sans text-lg text-gray-600">Lihat bagaimana kriuknya produk kami!</p>
             </div>
-            <div class="row g-5">
-                <!-- Mood Recommender -->
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="ai-card h-100">
-                        <h4 class="text-center mb-3">Cari Kriuk Sesuai Mood</h4>
-                        <select id="mood-select" class="form-select form-select-lg">
-                            <option selected>Pilih Mood Kamu...</option>
-                            <option value="Butuh Semangat">🔥 Butuh Semangat</option>
-                            <option value="Lagi Santai">😌 Lagi Santai</option>
-                            <option value="Fokus Kerja">💻 Fokus Kerja</option>
-                            <option value="Nonton Film">🎬 Nonton Film</option>
-                        </select>
-                        <button id="getRecommendationBtn" class="btn btn-brand mt-3 w-100">Cari Rekomendasi!</button>
-                        <div id="recommendationResult" class="ai-result mt-4 text-center">
-                            <span class="text-muted">Rekomendasi camilan spesial akan muncul di sini...</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pantun Generator -->
-                <div class="col-lg-6" data-aos="fade-left">
-                     <div class="ai-card h-100">
-                        <h4 class="text-center mb-3">Minta Pantun Kriuk!</h4>
-                        <p class="text-center text-muted">Klik tombol di bawah dan dapatkan pantun segar seputar camilan!</p>
-                        <button id="getPantunBtn" class="btn btn-brand w-100">Buatkan Aku Pantun! <i class="fas fa-magic ms-2"></i></button>
-                        <div id="pantunResult" class="ai-result mt-4 text-center">
-                             <span class="text-muted">Pantun renyah seputar camilan akan muncul di sini...</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl relative" data-aos="fade-up" data-aos-delay="100">
+                <!--
+                    PENTING: Pastikan Anda punya file video bernama 'iklan.mp4'
+                    di folder yang sama dengan file index.html ini!
+                -->
+                <video id="promo-video" class="w-full" autoplay loop muted playsinline>
+                    <!-- Ganti 'iklan.mp4' dengan link video Anda jika perlu -->
+                    <source src="iklan.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <!-- Tombol Mute/Unmute -->
+                <button id="video-mute-btn" class="absolute top-4 right-4 bg-black/50 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl hover:bg-black/80 transition-all z-10">
+                    <i id="video-icon" class="fas fa-volume-mute"></i>
+                </button>
             </div>
         </div>
     </section>
-    
+    <!-- ===== Akhir Bagian Video Iklan ===== -->
+
+
+    <!-- ===== Bagian Kode Diskon ===== -->
+    <section class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary mb-4">Punya Kode Diskon?</h2>
+                <p class="font-sans text-lg text-gray-600 mb-8">Masukkan kode rahasia dari kami untuk mendapatkan penawaran spesial!</p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                    <input id="discount-input" type="text" placeholder="Masukkan Kode Rahasia..." class="flex-grow px-6 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary font-sans">
+                    <button id="discount-btn" class="bg-accent hover:bg-opacity-90 text-white font-sans font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+                        Gunakan Kode
+                    </button>
+                </div>
+                <!-- Pesan status untuk kode diskon -->
+                <p id="discount-message" class="font-sans text-lg font-medium mt-6 h-6"></p>
+            </div>
+        </div>
+    </section>
+    <!-- ===== Akhir Bagian Kode Diskon ===== -->
+
     <!-- Footer -->
-    <footer class="footer mt-auto bg-dark text-white pt-4 pb-2">
-        <div class="container text-center"><p>&copy; 2025 ECO KRIUK. Camilan Sehat, Bumi Selamat.</p></div>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 text-center">
+            <a href="index.html" class="inline-block mb-4">
+                <!-- Logo ditambahkan di Footer -->
+                <img src="https://i.ibb.co/L8y3J78/Eco-Kriuk-Logo.png" alt="Eco Kriuk Logo" class="h-16 mx-auto">
+            </a>
+            
+            <!-- ===== Info Kontak Baru ===== -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 my-8 text-gray-300">
+                <a href="mailto:ecokriuksurel@gmail.com" class="font-sans hover:text-white transition-colors text-sm sm:text-base">
+                    <i class="fas fa-envelope mr-2"></i>ecokriuksurel@gmail.com
+                </a>
+                <a href="tel:+6288274209156" class="font-sans hover:text-white transition-colors text-sm sm:text-base">
+                    <i class="fas fa-phone mr-2"></i>+62 882 7420 9156
+                </a>
+                <a href="https://www.instagram.com/EcoKriukGram.Go" target="_blank" class="font-sans hover:text-white transition-colors text-sm sm:text-base">
+                    <i class="fab fa-instagram mr-2"></i>EcoKriukGram.Go
+                </a>
+            </div>
+            <!-- ===== Akhir Info Kontak ===== -->
+
+            <!-- Navigasi Footer -->
+            <div class="flex justify-center space-x-6 my-6">
+                <a href="index.html" class="font-sans hover:text-gray-300 transition-colors">Beranda</a>
+                <a href="produk.html" class="font-sans hover:text-gray-300 transition-colors">Produk</a>
+                <a href="tentang-kami.html" class="font-sans hover:text-gray-300 transition-colors">Tentang Kami</a>
+            </div>
+            <p class="font-sans text-gray-400 mt-8">&copy; 2025 ECO KRIUK. Camilan Sehat, Bumi Selamat. | Mahasiswa Bisnis Digital Satyaterrabhinekka</p>
+        </div>
     </footer>
 
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ===== Pop-up Penawaran Selamat Datang ===== -->
+    <div id="welcome-popup" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div id="popup-box" class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center relative">
+            <!-- Tombol Close -->
+            <button id="close-popup" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            <!-- Konten Pop-up -->
+            <img src="https://i.ibb.co/L8y3J78/Eco-Kriuk-Logo.png" alt="Eco Kriuk Logo" class="h-20 mx-auto mb-4">
+            <h2 class="font-serif text-3xl font-bold text-primary mb-2">Selamat Datang!</h2>
+            <p class="font-sans text-lg text-gray-600 mb-6">Dapatkan diskon spesial <span class="font-bold text-accent">10%</span> untuk pesanan pertamamu hari ini!</p>
+            
+            <!-- Tombol Aksi (Nomor WA diperbarui) -->
+            <a href="https://wa.me/6288274209156?text=Halo%20Eco%20Kriuk%2C%20saya%20mau%20klaim%20diskon%20selamat%20datang%2010%25%21" target="_blank" class="block w-full bg-accent hover:bg-opacity-90 text-white font-sans font-bold py-3 px-6 rounded-full text-lg transition-all duration-300 mb-3">
+                Ambil Diskon Sekarang
+            </a>
+            <button id="decline-popup" class="font-sans text-sm text-gray-500 hover:text-gray-800 transition-colors">
+                Lain Kali Saja
+            </button>
+        </div>
+    </div>
+    <!-- ===== Akhir Pop-up ===== -->
+
+    <!-- ===== Widget Jam Interaktif ===== -->
+    <div id="clock-widget" class="fixed bottom-4 left-4 z-40 bg-white/80 backdrop-blur-sm shadow-lg px-4 py-2 rounded-full text-primary font-bold font-sans text-sm">
+        Memuat...
+    </div>
+    <!-- ===== Akhir Widget Jam ===== -->
+
+
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init({ duration: 800, once: true, offset: 50 });
 
-        // Animated background script
-        const leafContainer = document.querySelector('.leaf-container');
+        // Script animasi bunga
+        const flowerContainer = document.querySelector('.flower-container');
         for (let i = 0; i < 15; i++) {
-            const leaf = document.createElement('div');
-            leaf.className = 'leaf';
-            leaf.style.left = `${Math.random() * 100}vw`;
-            leaf.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            leaf.style.animationDelay = `${Math.random() * 5}s`;
-            leafContainer.appendChild(leaf);
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = `${Math.random() * 100}vw`;
+            flower.style.animationDuration = `${Math.random() * 7 + 8}s`;
+            flower.style.animationDelay = `${Math.random() * 5}s`;
+            flowerContainer.appendChild(flower);
         }
 
-        // Gemini API Interaction
-        const apiKey = "";
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
-        const getRecommendationBtn = document.getElementById('getRecommendationBtn');
-        const recommendationResult = document.getElementById('recommendationResult');
-        const getPantunBtn = document.getElementById('getPantunBtn');
-        const pantunResult = document.getElementById('pantunResult');
-
-        const loadingHTML = `<div class="d-flex justify-content-center align-items-center h-100"><div class="spinner-border text-success" role="status"></div><span class="ms-3">AI sedang meracik...</span></div>`;
-
-        getRecommendationBtn.addEventListener('click', async () => {
-            const mood = document.getElementById('mood-select').value;
-            if (mood.includes('Pilih')) {
-                recommendationResult.innerHTML = '<span class="text-danger">Pilih dulu mood kamu ya!</span>';
-                return;
+        // Script Navbar scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
             }
-            recommendationResult.innerHTML = loadingHTML;
-            const randomAdjectives = ["kreatif", "unik", "tak terduga", "klasik", "menyegarkan", "berbeda", "out-of-the-box"];
-            const randomAdjective = randomAdjectives[Math.floor(Math.random() * randomAdjectives.length)];
-            const prompt = `Saya sedang merasa "${mood}". Berikan saya rekomendasi produk keripik "Eco Kriuk" (varian rasa: Balado, Rendang, Sambal Matah, Bumbu Rujak, Lada Hitam, Sambal Ijo) yang paling cocok. Beri jawaban yang ${randomAdjective} dalam 1 kalimat dan sertakan emoji yang relevan. Pastikan jawabannya berbeda setiap kali diminta.`;
-            const resultText = await callGemini(prompt, "Saatnya mencoba Keripik Sukun Balado! 🌶️ Pedas manisnya dijamin bikin semangatmu membara lagi!");
-            recommendationResult.innerHTML = resultText;
         });
 
-        getPantunBtn.addEventListener('click', async () => {
-            pantunResult.innerHTML = loadingHTML;
-            const pantunStyles = ["lucu dan ceria", "romantis dan puitis", "penuh semangat", "jenaka", "modern dan gaul", "tradisional melayu"];
-            const randomStyle = pantunStyles[Math.floor(Math.random() * pantunStyles.length)];
-            const prompt = `Buatkan sebuah pantun 4 baris (sampiran dan isi) dengan gaya ${randomStyle} tentang makan camilan sehat "Eco Kriuk". Pastikan pantunnya selalu berbeda dan acak.`;
-            const resultText = await callGemini(prompt, "Ada singkong di tepi rawa,\nJadi keripik rasa rendang.\nHai kawan jangan kecewa,\nEco Kriuk bikin hati senang! 😄");
-            pantunResult.innerHTML = resultText;
+        // Script Menu Mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuMobile = document.getElementById('menu-mobile');
+        menuToggle.addEventListener('click', () => {
+            menuMobile.classList.toggle('hidden');
         });
 
-        async function callGemini(prompt, fallbackText) {
-             if (!apiKey) {
-                console.warn("API Key is empty. Returning fallback text.");
-                return fallbackText;
-             }
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                if (!response.ok) throw new Error(`API error! status: ${response.status}`);
-                const result = await response.json();
-                return result.candidates?.[0]?.content?.parts?.[0]?.text || fallbackText;
-            } catch (error) {
-                console.error("Error fetching Gemini API:", error);
-                return "Maaf, AI kami sedang istirahat. Coba lagi nanti ya!";
+        // --- Script Pop-up Penawaran Selamat Datang ---
+        
+        // Cek jika `window` sudah selesai di-load
+        window.addEventListener('load', () => {
+            const popup = document.getElementById('welcome-popup');
+            const contentBox = document.getElementById('popup-box');
+            const closeBtn = document.getElementById('close-popup');
+            const declineBtn = document.getElementById('decline-popup');
+
+            // Fungsi untuk menampilkan pop-up
+            const showPopup = () => {
+                // Cek apakah pengunjung sudah pernah mampir
+                if (localStorage.getItem('ecokriuk_visited') !== 'true') {
+                    // Tampilkan setelah 3 detik
+                    setTimeout(() => {
+                        if(popup) popup.classList.remove('hidden');
+                        if(contentBox) contentBox.classList.add('popup-content');
+                        // Tandai pengunjung sudah mampir
+                        localStorage.setItem('ecokriuk_visited', 'true');
+                    }, 3000);
+                }
+            };
+
+            // Fungsi untuk menutup pop-up
+            const hidePopup = () => {
+                if(contentBox) contentBox.classList.add('popup-closing');
+                // Tunggu animasi selesai, baru sembunyikan
+                setTimeout(() => {
+                    if(popup) popup.classList.add('hidden');
+                    if(contentBox) contentBox.classList.remove('popup-closing'); // Reset untuk lain kali
+                }, 300);
+            };
+
+            // Tambahkan event listener
+            if(closeBtn) closeBtn.addEventListener('click', hidePopup);
+            if(declineBtn) declineBtn.addEventListener('click', hidePopup);
+            
+            // Tutup jika klik di luar box (di overlay)
+            if(popup) popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    hidePopup();
+                }
+            });
+
+            // Jalankan fungsi untuk menampilkan pop-up
+            showPopup();
+        });
+
+        // --- Script Widget Jam Interaktif ---
+        const clockWidget = document.getElementById('clock-widget');
+        const updateClock = () => {
+            const now = new Date();
+            // Opsi untuk format Indonesia
+            const options = { weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Asia/Jakarta' };
+            let timeString = new Intl.DateTimeFormat('id-ID', options).format(now);
+            
+            // Mengganti "pukul" dengan format yang lebih singkat jika ada
+            timeString = timeString.replace('pukul ', '').replace(/\./g, ':'); // Ganti titik dengan :
+            
+            // Format: Minggu, 22:44:15
+            if(clockWidget) clockWidget.innerHTML = timeString;
+        };
+        updateClock(); // Panggil pertama kali
+        setInterval(updateClock, 1000); // Update setiap detik
+
+        // --- Script Kode Diskon ---
+        const discountInput = document.getElementById('discount-input');
+        const discountBtn = document.getElementById('discount-btn');
+        const discountMessage = document.getElementById('discount-message');
+        
+        // Daftar kode yang valid (semua huruf besar)
+        const validCodes = ['KRIUKHEMAT', 'ECODISKON', 'MANTAP10', 'SUREL'];
+
+        if(discountBtn) discountBtn.addEventListener('click', () => {
+            const code = discountInput.value.toUpperCase().trim();
+            
+            if (validCodes.includes(code)) {
+                // Berhasil
+                discountMessage.textContent = '🎉 Selamat! Kode berhasil dipakai. Diskon 10% akan diterapkan di WhatsApp.';
+                discountMessage.classList.remove('text-red-600');
+                discountMessage.classList.add('text-green-600');
+                
+                // Bonus: Buka WhatsApp dengan kode diskon setelah 1.5 detik
+                setTimeout(() => {
+                    window.open(`https://wa.me/6288274209156?text=Halo%20Eco%20Kriuk%2C%20saya%20mau%20pesan%20dengan%20kode%20diskon%3A%20${code}`, '_blank');
+                }, 1500);
+
+            } else if (code === '') {
+                // Kosong
+                discountMessage.textContent = 'Silakan masukkan kode terlebih dahulu.';
+                discountMessage.classList.add('text-red-600');
+                discountMessage.classList.remove('text-green-600');
+            } else {
+                // Salah
+                discountMessage.textContent = 'Maaf, kode yang Anda masukkan tidak valid.';
+                discountMessage.classList.add('text-red-600');
+                discountMessage.classList.remove('text-green-600');
             }
-        }
+
+            // Hapus pesan setelah beberapa detik
+            setTimeout(() => {
+                discountMessage.textContent = '';
+            }, 5000);
+        });
+        
+        // --- Script Tombol Mute/Unmute Video ---
+        const video = document.getElementById('promo-video');
+        const muteBtn = document.getElementById('video-mute-btn');
+        const videoIcon = document.getElementById('video-icon');
+
+        if(muteBtn) muteBtn.addEventListener('click', () => {
+            if (video.muted) {
+                video.muted = false;
+                videoIcon.classList.remove('fa-volume-mute');
+                videoIcon.classList.add('fa-volume-up');
+            } else {
+                video.muted = true;
+                videoIcon.classList.remove('fa-volume-up');
+                videoIcon.classList.add('fa-volume-mute');
+            }
+        });
+
     </script>
 </body>
-
 </html>
-
-
-
-
